@@ -110,7 +110,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                     'Menu',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'aldrich',
                                     ),
@@ -123,7 +123,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
                                           decoration: BoxDecoration(
-                                            color: Colors.grey,
+                                            color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
                                           ),
@@ -133,13 +133,13 @@ class _HomeTotalState extends State<HomeTotal> {
                                                 'assets/images/setup.png',
                                                 width: 40,
                                                 height: 40,
-                                                color: Colors.black,
+                                                color: Colors.white,
                                               ),
                                               SizedBox(height: 3),
                                               Text(
                                                 'Setup',
                                                 style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   fontSize: 23,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: 'aldrich',
@@ -154,7 +154,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
                                           decoration: BoxDecoration(
-                                            color: Colors.grey,
+                                            color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
                                           ),
@@ -164,13 +164,13 @@ class _HomeTotalState extends State<HomeTotal> {
                                                 'assets/images/mechanic.png',
                                                 width: 40,
                                                 height: 40,
-                                                color: Colors.black,
+                                                color: Colors.white,
                                               ),
                                               SizedBox(height: 3),
                                               Text(
                                                 'Session',
                                                 style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   fontSize: 23,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: 'aldrich',
@@ -190,7 +190,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
                                           decoration: BoxDecoration(
-                                            color: Colors.grey,
+                                            color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
                                           ),
@@ -200,13 +200,13 @@ class _HomeTotalState extends State<HomeTotal> {
                                                 'assets/images/track.png',
                                                 width: 40,
                                                 height: 40,
-                                                color: Colors.black,
+                                                color: Colors.white,
                                               ),
                                               SizedBox(height: 3),
                                               Text(
                                                 'Tracks',
                                                 style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   fontSize: 23,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: 'aldrich',

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeScreenDown extends StatelessWidget {
+class HomeScreenDown extends StatefulWidget {
+  @override
+  _HomeScreenDownState createState() => _HomeScreenDownState();
+}
+
+class _HomeScreenDownState extends State<HomeScreenDown> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,26 +26,20 @@ class HomeScreenDown extends StatelessWidget {
                 child: Placeholder(),
               ),
             ),
-            Container(
-              // CoordinatorLayout
-              child: BottomAppBar(
-                child: BottomNavigationBar(
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.search),
-                      label: 'Search',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite),
-                      label: 'Favorites',
-                    ),
-                  ],
-                ),
-              ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
             ),
             FloatingActionButton(
               onPressed: () {
@@ -46,7 +47,15 @@ class HomeScreenDown extends StatelessWidget {
               },
               child: Icon(Icons.menu),
               backgroundColor: Colors.grey,
-              elevation: 10,
+              elevation: 70,
+            ),
+            IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
             ),
           ],
         ),

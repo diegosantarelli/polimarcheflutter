@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:polimarcheflutter/screens/home/homeUp_screen.dart';
+
 import 'package:polimarcheflutter/screens/home/homeUp_screen.dart'; // Importa la nuova classe HomeScreenDown
 
 class HomeTotal extends StatefulWidget {
@@ -11,14 +13,20 @@ class HomeTotal extends StatefulWidget {
 class _HomeTotalState extends State<HomeTotal> {
   final UserData userData = UserData();
   late FirebaseAuth _auth;
+  late String userId; // Variabile per memorizzare userId
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _auth = FirebaseAuth.instance;
-    String userId = _auth.currentUser?.uid ?? '';
-    userData.fetchDataFromFirebase(userId);
+    userId = _auth.currentUser?.uid ?? '';
+    fetchDataFromFirebase(userId);
+  }
+
+  Future<void> fetchDataFromFirebase(String userId) async {
+    await userData.fetchDataFromFirebase(userId);
+    setState(() {}); // Aggiorna il widget dopo il recupero dei dati
   }
 
   @override
@@ -53,144 +61,167 @@ class _HomeTotalState extends State<HomeTotal> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Text(
-                          userData.matriculation,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'aldrich',
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          userData.role,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'aldrich',
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          height: 2,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          height: 2,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 40),
-                        Text(
-                          'Menu',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'aldrich',
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/setup.png',
-                                      width: 40,
-                                      height: 40,
-                                      color: Colors.black,
+                        FutureBuilder<void>(
+                          future: userData.fetchDataFromFirebase(userId),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              // Mostra uno spinner di caricamento
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              // Gestisci l'errore durante il recupero dei dati
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              // I dati sono stati recuperati correttamente
+                              return Column(
+                                children: [
+                                  Text(
+                                    userData.matriculation.split("@")[0].substring(1),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'aldrich',
                                     ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      'Setup',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'aldrich',
+                                  ),
+
+                                  SizedBox(height: 20),
+                                  Text(
+                                    userData.role,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'aldrich',
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Container(
+                                    height: 2,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 20),
+                                  Container(
+                                    height: 2,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 40),
+                                  Text(
+                                    'Menu',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'aldrich',
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(15),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                'assets/images/setup.png',
+                                                width: 40,
+                                                height: 40,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                'Setup',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 23,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'aldrich',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/mechanic.png',
-                                      width: 40,
-                                      height: 40,
-                                      color: Colors.black,
-                                    ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      'Session',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'aldrich',
+                                      Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(15),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                'assets/images/mechanic.png',
+                                                width: 40,
+                                                height: 40,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                'Session',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 23,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'aldrich',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/track.png',
-                                      width: 40,
-                                      height: 40,
-                                      color: Colors.black,
-                                    ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      'Tracks',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'aldrich',
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(15),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                'assets/images/track.png',
+                                                width: 40,
+                                                height: 40,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                'Tracks',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 23,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'aldrich',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                                    ],
+                                  ),
+                                ],
+                              );
+                            }
+                          },
                         ),
                       ],
                     ),
@@ -239,4 +270,3 @@ class _HomeTotalState extends State<HomeTotal> {
     );
   }
 }
-

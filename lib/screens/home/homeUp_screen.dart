@@ -15,15 +15,14 @@ class UserData extends ChangeNotifier {
           .get();
 
       if (userDocument.exists) {
-        Map<String, dynamic> userData =
-        userDocument.data() as Map<String, dynamic>;
+        Map<String, dynamic> userData = userDocument.data() as Map<String, dynamic>;
         matriculation = userData['matriculation'] ?? '';
         role = userData['role'] ?? '';
       } else {
-        // The user document does not exist in the database
+        // Il documento utente non esiste nel database
       }
     } catch (error) {
-      print('Error retrieving data: $error');
+      print('Errore durante il recupero dei dati: $error');
     }
 
     notifyListeners();

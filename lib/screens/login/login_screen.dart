@@ -108,13 +108,19 @@ class LoginScreen extends StatelessWidget {
                 ),
                 ),
                 SizedBox(height: 5),
-                Text(
+                ElevatedButton(
+                    onPressed: () {
+                      String matricola = matricolaController.text;
+                      sendPasswordResetEmail(context, matricola);
+                    },
+                child: Text(
                   'Password recovery',
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontFamily: 'aldrich',
                   ),
+                ),
                 ),
               ],
             ),
@@ -149,6 +155,33 @@ class LoginScreen extends StatelessWidget {
             ],
           );
         },
+      );
+    }
+  }
+
+  // Function to send password reset email
+  void sendPasswordResetEmail(BuildContext context, String matricola) async {
+    try {
+      final auth = FirebaseAuth.instance;
+      final matriculation = "s$matricola@studenti.univpm.it";
+
+      await auth.sendPasswordResetEmail(email: matriculation);
+
+      // Email di recupero password inviata con successo
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Email di recupero password inviata'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } catch (e) {
+      // Gestione dell'errore durante l'invio dell'email di recupero password
+      String errorMessage = e.toString();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Colors.red,
+        ),
       );
     }
   }

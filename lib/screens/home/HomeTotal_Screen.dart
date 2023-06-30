@@ -222,7 +222,11 @@ class _HomeTotalState extends State<HomeTotal> {
               elevation: 10,
             ),
             IconButton(
-              icon: Icon(Icons.favorite),
+              icon: Image.asset(
+                'assets/images/group.png',
+                width: 30,
+                height: 30,
+              ),
               onPressed: () {
                 setState(() {
                   _currentIndex = 2;

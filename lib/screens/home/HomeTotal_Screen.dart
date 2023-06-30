@@ -194,28 +194,40 @@ class _HomeTotalState extends State<HomeTotal> {
                                             borderRadius:
                                             BorderRadius.circular(10),
                                           ),
+
                                           child: Column(
                                             children: [
-                                              Image.asset(
-                                                'assets/images/track.png',
-                                                width: 40,
-                                                height: 40,
-                                                color: Colors.white,
-                                              ),
-                                              SizedBox(height: 3),
-                                              Text(
-                                                'Tracks',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 23,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'aldrich',
-                                                ),
-                                              ),
-                                            ],
+                            InkWell(
+                            onTap: () {
+                            Navigator.pushNamed(context, '/tracks'); // Sostituisci '/tracks' con la route corretta per la tua vista desiderata
+                            },
+                            child: Column(
+                            children: [
+                            Image.asset(
+                            'assets/images/track.png',
+                            width: 40,
+                            height: 40,
+                            color: Colors.white,
+                            ),
+                            SizedBox(height: 3),
+                            Text(
+                            'Tracks',
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'aldrich',
+                            ),
+                            ),
+                            ],
+                            ),
+                            ),
+
+                            ],
                                           ),
                                         ),
                                       ),
+
                                     ],
                                   ),
                                 ],
@@ -237,7 +249,11 @@ class _HomeTotalState extends State<HomeTotal> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: Image.asset(
+                'assets/images/home.png',
+                width: 30,
+                height: 30,
+              ),
               onPressed: () {
                 setState(() {
                   _currentIndex = 0;

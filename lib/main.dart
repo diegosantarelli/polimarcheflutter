@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/signup': (context) => SignUpScreen(),
         '/home': (context) => HomeTotal(),
+        '/tracks': (context) => LoginScreen(),
       },
       home: LoginScreen(),
     );

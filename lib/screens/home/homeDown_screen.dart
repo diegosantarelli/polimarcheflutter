@@ -50,6 +50,7 @@ class _HomeScreenDownState extends State<HomeScreenDown> {
               elevation: 70,
             ),
             IconButton(
+
               icon: Icon(Icons.favorite),
               onPressed: () {
                 setState(() {

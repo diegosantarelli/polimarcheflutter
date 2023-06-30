@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:polimarcheflutter/screens/home/homeUp_screen.dart';
+
 
 class HomeTotal extends StatefulWidget {
   @override
-  _CombinedScreenState createState() => _CombinedScreenState();
+  _HomeTotalState createState() => _HomeTotalState();
 }
 
-class _CombinedScreenState extends State<CombinedScreen> {
+class _HomeTotalState extends State<HomeTotal> {
   final UserData userData = UserData();
   late FirebaseAuth _auth;
 

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xB3000000),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sfondo_schermata_home.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+      child: Center(
+      child: Padding(
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Some Text',
+              'Matricola',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -32,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Some Text',
+              'Ruolo',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -103,8 +111,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/practice_session_icon.png',
+                        SvgPicture.asset(
+                          'assets/images/practice_session_icon.svg',
                           width: 30,
                           height: 30,
                           color: Colors.white,
@@ -162,6 +170,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    ),
       ),
     );
   }

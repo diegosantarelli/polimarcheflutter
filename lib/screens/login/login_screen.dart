@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class LoginScreen extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  TextEditingController matricolaController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +38,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: matricolaController,
                   decoration: InputDecoration(
                     hintText: 'Matricola',
                     hintStyle: TextStyle(color: Colors.white),
@@ -49,6 +55,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     hintStyle: TextStyle(color: Colors.white),
@@ -69,7 +76,10 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    String matricola = matricolaController.text;
+                    String email = "s" + matricola + "@studenti.univpm.it";
+                    String password = passwordController.text;// Ottieni il valore del campo password
+                    _signInWithEmailAndPassword(context, email, password);
                   },
                   child: Text('Sign In'),
                   style: ElevatedButton.styleFrom(
@@ -113,4 +123,34 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _signInWithEmailAndPassword(BuildContext context, String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // L'utente è stato autenticato con successo
+      // Puoi navigare alla schermata successiva o eseguire altre azioni desiderate
+      Navigator.pushNamed(context, '/home');
+    } catch (e) {
+      // Gestisci eventuali errori di autenticazione
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Errore di accesso'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
 }

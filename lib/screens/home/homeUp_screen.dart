@@ -41,12 +41,12 @@ class UserData extends ChangeNotifier {
 
 }
 
-class HomeScreen extends StatefulWidget {
+class HomeScreenUp extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreenUp> {
   final UserData userData = UserData();
   late FirebaseAuth _auth;
 

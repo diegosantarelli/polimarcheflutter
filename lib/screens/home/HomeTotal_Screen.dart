@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:polimarcheflutter/screens/home/homeUp_screen.dart';
-
+import 'package:polimarcheflutter/screens/home/homeUp_screen.dart'; // Importa la nuova classe HomeScreenDown
 
 class HomeTotal extends StatefulWidget {
   @override
@@ -12,6 +11,7 @@ class HomeTotal extends StatefulWidget {
 class _HomeTotalState extends State<HomeTotal> {
   final UserData userData = UserData();
   late FirebaseAuth _auth;
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -198,26 +198,20 @@ class _HomeTotalState extends State<HomeTotal> {
                 ),
               ),
             ),
-            Container(
-              // CoordinatorLayout
-              child: BottomAppBar(
-                child: BottomNavigationBar(
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.search),
-                      label: 'Search',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite),
-                      label: 'Favorites',
-                    ),
-                  ],
-                ),
-              ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
             ),
             FloatingActionButton(
               onPressed: () {
@@ -227,9 +221,18 @@ class _HomeTotalState extends State<HomeTotal> {
               backgroundColor: Colors.grey,
               elevation: 10,
             ),
+            IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
+

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -40,11 +39,7 @@ class UserData extends ChangeNotifier {
     }
   }
 
-
-
 }
-
-
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -143,17 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/setup_icon.png',
-                              width: 30,
-                              height: 30,
-                              color: Colors.white,
+                              'assets/images/setup.png',
+                              width: 40,
+                              height: 40,
+                              color: Colors.black,
                             ),
                             SizedBox(height: 3),
                             Text(
                               'Setup',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize: 23,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'aldrich',
                               ),
@@ -172,18 +167,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Column(
                           children: [
-                            SvgPicture.asset(
-                              'assets/images/practice_session_icon.svg',
-                              width: 30,
-                              height: 30,
-                              color: Colors.white,
+                            Image.asset(
+                              'assets/images/mechanic.png',
+                              width: 40,
+                              height: 40,
+                              color: Colors.black,
                             ),
                             SizedBox(height: 3),
                             Text(
                               'Session',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize: 23,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'aldrich',
                               ),
@@ -208,17 +203,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/track_icon_menu.png',
-                              width: 30,
-                              height: 30,
-                              color: Colors.white,
+                              'assets/images/track.png',
+                              width: 40,
+                              height: 40,
+                              color: Colors.black,
                             ),
                             SizedBox(height: 3),
                             Text(
                               'Tracks',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize: 23,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'aldrich',
                               ),

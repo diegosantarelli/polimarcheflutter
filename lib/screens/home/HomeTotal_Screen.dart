@@ -79,7 +79,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                     userData.matriculation.split("@")[0].substring(1),
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'aldrich',
                                     ),
@@ -90,7 +90,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                     userData.role,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 14,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'aldrich',
                                     ),

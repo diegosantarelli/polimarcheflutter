@@ -55,7 +55,7 @@ class TracksListScreen extends StatelessWidget {
                           ],
                         ),
                         trailing: GestureDetector(
-                          onTap: () => deletetrack(index),
+
                           child: Icon(
                             Icons.delete,
                             color: Colors.white,

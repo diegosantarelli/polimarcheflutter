@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polimarcheflutter/screens/session/sessionList.dart';
 import 'package:polimarcheflutter/screens/setup/setupListScreen.dart';
 
 class PracticeSessionScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class PracticeSessionScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/sfondo_schermata_practice_session.jpg'),
+            image: AssetImage('assets/images/sfondo_schermata_setup.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -31,7 +32,7 @@ class PracticeSessionScreen extends StatelessWidget {
             ),
             ),
             Expanded(
-              child: SetupListScreen(),
+              child: ListPracticeSessionScreen(),
             ),
           ],
         ),
@@ -41,11 +42,11 @@ class PracticeSessionScreen extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/images/track.png',
+                'assets/images/mechanic.png',
                 width: 20,
                 height: 20,
               ),
-              label: 'Setups',
+              label: 'Practice Sessions',
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
@@ -67,26 +68,3 @@ class PracticeSessionScreen extends StatelessWidget {
   }
 }
 
-class ImageButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final Widget image;
-  final Color color;
-
-  ImageButton({required this.onPressed, required this.image, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onPressed,
-        child: Container(
-          color: Colors.transparent,
-          child: Center(
-            child: image,
-          ),
-        ),
-      ),
-    );
-  }
-}

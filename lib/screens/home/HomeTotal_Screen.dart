@@ -168,10 +168,10 @@ class _HomeTotalState extends State<HomeTotal> {
                                       ),
                                       ),
                                       Expanded(
-                            child: InkWell(
-                            onTap: () {
-                            Navigator.pushNamed(context, '/session');
-                            },
+                                        child: InkWell(
+                                        onTap: () {
+                                        Navigator.pushNamed(context, '/session');
+                                        },
                                         child: Container(
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
@@ -340,7 +340,7 @@ class _HomeTotalState extends State<HomeTotal> {
               title: Text('Setup'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/setup');
               },
             ),
             ListTile(
@@ -364,7 +364,7 @@ class _HomeTotalState extends State<HomeTotal> {
               title: Text('Practice session'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/session');
               },
             ),
             ListTile(

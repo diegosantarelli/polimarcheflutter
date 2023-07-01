@@ -10,6 +10,7 @@ class SetupScreen extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('assets/images/sfondo_schermata_setup.jpg'),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken),
           ),
         ),
         child: Column(

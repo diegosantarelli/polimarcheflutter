@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TracksListScreen extends StatelessWidget {
   @override
@@ -17,7 +17,7 @@ class TracksListScreen extends StatelessWidget {
         }
 
         final trackDocuments = snapshot.data!.docs;
-        final trackList = trackDocuments.map((doc) => doc['name']).toList();
+        final trackList = trackDocuments.map((doc) => Track.fromSnapshot(doc)).toList();
 
         return Scaffold(
           body: Container(
@@ -29,31 +29,35 @@ class TracksListScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: SizedBox(
-                    height: 40,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Track name',
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                    ),
-                  ),
-                ),
                 Expanded(
-                  child: ListView.builder(
+                  child: ListView.builder( //corrisponde alla RecyclerView in kt
                     itemCount: trackList.length,
                     itemBuilder: (context, index) {
+                      final track = trackList[index];
                       return ListTile(
-                        title: Text(
-                          trackList[index],
-                          style: TextStyle(
+                        title: Row(
+                          children: [
+                            Text(
+                              track.name,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(width: 100),
+                            Text(
+                              '${track.length} km',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                              ),
+                            ),
+                          ],
+                        ),
+                        trailing: GestureDetector(
+                          onTap: () => deletetrack(index),
+                          child: Icon(
+                            Icons.delete,
                             color: Colors.white,
                           ),
                         ),
@@ -64,26 +68,6 @@ class TracksListScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.all(10),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Gestisci il clic su "Add track"
-                          },
-                          child: Text(
-                            'Add track',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
@@ -92,3 +76,16 @@ class TracksListScreen extends StatelessWidget {
     );
   }
 }
+
+class Track {
+  final String name;
+  final String length;
+
+  Track(this.name, this.length);
+
+  Track.fromSnapshot(DocumentSnapshot snapshot)
+      : name = snapshot['name'],
+        length = snapshot['length'];
+
+}
+

@@ -16,20 +16,20 @@ class PracticeSessionScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20), // Spostamento verso il basso
+              margin: EdgeInsets.only(top: 20),
               child: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Text(
-                'Practice Session',
-                style: TextStyle(
-                  fontSize: 34,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Aldrich',
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                title: Text(
+                  'Practice Session',
+                  style: TextStyle(
+                    fontSize: 34,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Aldrich',
+                  ),
                 ),
               ),
-            ),
             ),
             Expanded(
               child: ListPracticeSessionScreen(),
@@ -61,10 +61,22 @@ class PracticeSessionScreen extends StatelessWidget {
               ),
               label: 'Home',
             ),
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                child: Image.asset(
+                  'assets/images/add.png',
+                  width: 20,
+                  height: 20,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/addsession');
+                },
+              ),
+              label: 'Add',
+            ),
           ],
         ),
       ),
     );
   }
 }
-

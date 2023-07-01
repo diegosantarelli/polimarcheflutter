@@ -6,6 +6,22 @@ class TrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false, // Rimuove la freccia indietro
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: Center(
+          child: Text(
+            'Tracks',
+            style: TextStyle(
+              fontSize: 34,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Aldrich',
+            ),
+          ),
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -15,19 +31,6 @@ class TrackScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Text(
-                'Tracks',
-                style: TextStyle(
-                  fontSize: 34,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Aldrich',
-                ),
-              ),
-            ),
             Expanded(
               child: TracksListScreen(),
             ),
@@ -51,7 +54,7 @@ class TrackScreen extends StatelessWidget {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: GestureDetector (
+              icon: GestureDetector(
                 child: Image.asset(
                   'assets/images/add.png',
                   width: 22,
@@ -63,8 +66,6 @@ class TrackScreen extends StatelessWidget {
               ),
               label: 'Add',
             ),
-
-
           ],
         ),
       ),

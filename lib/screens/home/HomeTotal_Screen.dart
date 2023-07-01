@@ -50,6 +50,7 @@ class _HomeTotalState extends State<HomeTotal> {
           image: DecorationImage(
             image: AssetImage('assets/images/sfondo_schermata_home.jpg'),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
           ),
         ),
         child: Column(
@@ -61,18 +62,21 @@ class _HomeTotalState extends State<HomeTotal> {
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                         SizedBox(height: 40),
-                        Text(
-                          'Welcome Back',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'aldrich',
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Welcome Back',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'aldrich',
                           ),
                         ),
+                    ),
                         SizedBox(height: 20),
                         FutureBuilder<void>(
                           future: userData.fetchDataFromFirebase(userId),
@@ -88,6 +92,15 @@ class _HomeTotalState extends State<HomeTotal> {
                               // I dati sono stati recuperati correttamente
                               return Column(
                                 children: [
+                                Text(
+                                'Matricola:',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'aldrich',
+                                ),
+                                ),
                                   Text(
                                     userData.matriculation.split("@")[0].substring(1),
                                     style: TextStyle(
@@ -100,22 +113,26 @@ class _HomeTotalState extends State<HomeTotal> {
 
                                   SizedBox(height: 20),
                                   Text(
+                                  'Ruolo:',
+                                  style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'aldrich',
+                                  ),
+                                  ),
+                                  Text(
                                     userData.role,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 27,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'aldrich',
                                     ),
                                   ),
                                   SizedBox(height: 20),
                                   Container(
-                                    height: 2,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Container(
-                                    height: 2,
+                                    height: 4,
                                     color: Colors.white,
                                   ),
                                   SizedBox(height: 40),
@@ -143,6 +160,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
+                                            border: Border.all(color: Colors.white, width: 2),
                                           ),
                                           child: Column(
                                             children: [
@@ -179,6 +197,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
+                                            border: Border.all(color: Colors.white, width: 2),
                                           ),
                                           child: Column(
                                             children: [
@@ -216,6 +235,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             color: Colors.transparent,
                                             borderRadius:
                                             BorderRadius.circular(10),
+                                            border: Border.all(color: Colors.white, width: 2),
                                           ),
 
                                           child: Column(

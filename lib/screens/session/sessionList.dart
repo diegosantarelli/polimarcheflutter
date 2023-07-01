@@ -123,6 +123,12 @@ class SessionDetailsScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, '/session', (route) => false);
+          },
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(

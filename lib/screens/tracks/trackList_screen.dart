@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TracksListScreen extends StatelessWidget {
-
   final List<Track> trackList = [];
 
   void deleteTrack(int index) {
@@ -11,8 +10,6 @@ class TracksListScreen extends StatelessWidget {
     FirebaseFirestore.instance.collection('track').doc(track.id).delete();
     trackList.removeAt(index); // Remove the track from the list
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +34,19 @@ class TracksListScreen extends StatelessWidget {
               image: DecorationImage(
                 image: AssetImage('assets/images/sfondo_schermata_setup.jpg'),
                 fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
               ),
             ),
             child: Column(
               children: [
                 Expanded(
-                  child: ListView.builder( //corrisponde alla RecyclerView in kt
+                  child: ListView.builder(
                     itemCount: trackList.length,
                     itemBuilder: (context, index) {
                       final track = trackList[index];
                       return ListTile(
                         title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Allinea gli elementi a destra e a sinistra
                           children: [
                             Text(
                               track.name,
@@ -56,22 +55,26 @@ class TracksListScreen extends StatelessWidget {
                                 fontSize: 20,
                               ),
                             ),
-                            SizedBox(width: 100),
-                            Text(
-                              '${track.length} km',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  '${track.length} km',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                  ),
+                                ),
+                                SizedBox(width: 16),
+                                GestureDetector(
+                                  onTap: () => deleteTrack(index),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
-                        trailing: GestureDetector(
-                          onTap: () => deleteTrack(index),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
                         ),
                         onTap: () {
                           // Gestisci il clic su una traccia
@@ -101,5 +104,3 @@ class Track {
         length = snapshot['length'],
         id = snapshot.id;
 }
-
-

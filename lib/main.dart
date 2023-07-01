@@ -3,6 +3,7 @@ import 'package:polimarcheflutter/screens/home/HomeTotal_Screen.dart';
 import 'package:polimarcheflutter/screens/home/homeDown_screen.dart';
 import 'package:polimarcheflutter/screens/session/SessionTotal.dart';
 import 'package:polimarcheflutter/screens/setup/SetupTotal.dart';
+import 'package:polimarcheflutter/screens/tracks/addTrack_screen.dart';
 import 'package:polimarcheflutter/screens/tracks/track_screen.dart';
 // Import the generated file
 import 'firebase_options.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpScreen(),
         '/home': (context) => HomeTotal(),
         '/tracks': (context) => TrackScreen(),
+        '/addtrack': (context) => AddTrackScreen(),
         '/setup': (context) => SetupScreen(),
         '/session': (context) => PracticeSessionScreen(),
       },

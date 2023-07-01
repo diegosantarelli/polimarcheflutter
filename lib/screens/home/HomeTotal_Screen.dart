@@ -168,6 +168,10 @@ class _HomeTotalState extends State<HomeTotal> {
                                       ),
                                       ),
                                       Expanded(
+                            child: InkWell(
+                            onTap: () {
+                            Navigator.pushNamed(context, '/session');
+                            },
                                         child: Container(
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
@@ -197,6 +201,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             ],
                                           ),
                                         ),
+                                      ),
                                       ),
                                     ],
                                   ),

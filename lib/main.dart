@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeTotal(),
         '/tracks': (context) => TrackScreen(),
         '/setup': (context) => SetupScreen(),
-        '/session': (context) => SessionScreen(),
+        '/session': (context) => PracticeSessionScreen(),
       },
     );
   }

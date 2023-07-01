@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:polimarcheflutter/screens/tracks/trackList_screen.dart';
 
 class TrackScreen extends StatelessWidget {
   @override
@@ -27,13 +29,7 @@ class TrackScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Color(0xBF000000),
-                ),
-                child: Placeholder(), // Replace with your actual content
-              ),
+              child: TracksListScreen(),
             ),
           ],
         ),
@@ -43,17 +39,17 @@ class TrackScreen extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(
-                  'assets/images/track.png',
-                   width: 20,
-                   height: 20,
+                'assets/images/track.png',
+                width: 20,
+                height: 20,
               ),
               label: 'Tracks',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                  'assets/images/bin.png',
-                   width: 20,
-                   height: 20,
+                'assets/images/bin.png',
+                width: 20,
+                height: 20,
               ),
               label: 'Delete',
             ),

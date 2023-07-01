@@ -317,9 +317,10 @@ class _HomeTotalState extends State<HomeTotal> {
               ),
               onPressed: () {
                 setState(() {
-                  _currentIndex = 2;
+                  Navigator.pushNamed(context, '/listmembers');
                 });
               },
+
             ),
           ],
         ),

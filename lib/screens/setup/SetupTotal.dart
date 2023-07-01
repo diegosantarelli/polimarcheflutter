@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
+import 'package:polimarcheflutter/screens/setup/setupListScreen.dart';
 
 class SetupScreen extends StatelessWidget {
   @override
@@ -15,57 +14,53 @@ class SetupScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
-              child: Container(
-                child: Column(
-                  children: [
-                    SizedBox(height: 40),
-                    Text(
-                      'Setup',
-                      style: TextStyle(
-                        fontSize: 34,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'aldrich',
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    IconButton(
-                      icon: Image.asset('assets/back_icon.png'),
-                      onPressed: () {
-                        // Aggiungi il gestore per il pulsante back
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Color(0xBF000000),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Placeholder(), // Sostituisci con il contenuto effettivo del FrameLayout
-              ),
-            ),
-            BottomAppBar(
-              child: BottomNavigationBar(
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: 'Settings',
-                  ),
-                ],
+            Container(
+              margin: EdgeInsets.only(top: 20), // Spostamento verso il basso
+              child: AppBar(
+                elevation: 0,
                 backgroundColor: Colors.transparent,
+                title: Text(
+                  'Setups',
+                  style: TextStyle(
+                    fontSize: 34,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Aldrich',
+                  ),
+                ),
               ),
             ),
+            Expanded(
+              child: SetupListScreen(),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/images/track.png',
+                width: 20,
+                height: 20,
+              ),
+              label: 'Setups',
+            ),
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                child: Image.asset(
+                  'assets/images/home.png',
+                  width: 20,
+                  height: 20,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+              ),
+              label: 'Home',
+            ),
+
           ],
         ),
       ),

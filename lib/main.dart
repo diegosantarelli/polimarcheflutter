@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:polimarcheflutter/screens/home/HomeTotal_Screen.dart';
 import 'package:polimarcheflutter/screens/home/homeDown_screen.dart';
+import 'package:polimarcheflutter/screens/session/SessionTotal.dart';
 import 'package:polimarcheflutter/screens/setup/SetupTotal.dart';
 import 'package:polimarcheflutter/screens/tracks/track_screen.dart';
 // Import the generated file
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeTotal(),
         '/tracks': (context) => TrackScreen(),
         '/setup': (context) => SetupScreen(),
+        '/session': (context) => SessionScreen(),
       },
     );
   }

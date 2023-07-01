@@ -34,28 +34,6 @@ class TrackScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/track.png',
-                width: 20,
-                height: 20,
-              ),
-              label: 'Tracks',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/bin.png',
-                width: 20,
-                height: 20,
-              ),
-              label: 'Delete',
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

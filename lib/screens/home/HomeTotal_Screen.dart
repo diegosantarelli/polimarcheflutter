@@ -132,6 +132,10 @@ class _HomeTotalState extends State<HomeTotal> {
                                   Row(
                                     children: [
                                       Expanded(
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(context, '/setup');
+                                        },
                                         child: Container(
                                           margin: EdgeInsets.all(10),
                                           padding: EdgeInsets.all(15),
@@ -161,6 +165,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             ],
                                           ),
                                         ),
+                                      ),
                                       ),
                                       Expanded(
                                         child: Container(

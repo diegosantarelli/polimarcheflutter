@@ -54,7 +54,14 @@ class SetupScreen extends StatelessWidget {
             BottomAppBar(
               child: BottomNavigationBar(
                 items: [
-                  // Aggiungi gli elementi del menu
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: 'Settings',
+                  ),
                 ],
                 backgroundColor: Colors.transparent,
               ),

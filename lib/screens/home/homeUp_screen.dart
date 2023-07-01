@@ -143,6 +143,7 @@ class _HomeScreenState extends State<HomeScreenUp> {
                               color: Colors.black,
                             ),
                             SizedBox(height: 3),
+
                             Text(
                               'Setup',
                               style: TextStyle(

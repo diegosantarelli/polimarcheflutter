@@ -3,6 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TracksListScreen extends StatelessWidget {
+
+  final List<Track> trackList = [];
+
+  void deleteTrack(int index) {
+    final track = trackList[index];
+    FirebaseFirestore.instance.collection('track').doc(track.id).delete();
+    trackList.removeAt(index); // Remove the track from the list
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -17,13 +28,14 @@ class TracksListScreen extends StatelessWidget {
         }
 
         final trackDocuments = snapshot.data!.docs;
-        final trackList = trackDocuments.map((doc) => Track.fromSnapshot(doc)).toList();
+        trackList.clear(); // Clear the existing list before updating it
+        trackList.addAll(trackDocuments.map((doc) => Track.fromSnapshot(doc)));
 
         return Scaffold(
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/sfondo_schermata_circuiti.jpg'),
+                image: AssetImage('assets/images/sfondo_schermata_setup.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -55,7 +67,7 @@ class TracksListScreen extends StatelessWidget {
                           ],
                         ),
                         trailing: GestureDetector(
-
+                          onTap: () => deleteTrack(index),
                           child: Icon(
                             Icons.delete,
                             color: Colors.white,
@@ -80,12 +92,14 @@ class TracksListScreen extends StatelessWidget {
 class Track {
   final String name;
   final String length;
+  final String id;
 
-  Track(this.name, this.length);
+  Track(this.name, this.length, this.id);
 
   Track.fromSnapshot(DocumentSnapshot snapshot)
       : name = snapshot['name'],
-        length = snapshot['length'];
-
+        length = snapshot['length'],
+        id = snapshot.id;
 }
+
 

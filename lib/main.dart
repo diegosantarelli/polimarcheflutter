@@ -1,18 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:polimarcheflutter/screens/home/HomeTotal_Screen.dart';
 import 'package:polimarcheflutter/screens/home/ListMembers_screen.dart';
-import 'package:polimarcheflutter/screens/home/homeDown_screen.dart';
 import 'package:polimarcheflutter/screens/session/SessionTotal.dart';
 import 'package:polimarcheflutter/screens/session/addSession_screen.dart';
 import 'package:polimarcheflutter/screens/setup/SetupTotal.dart';
 import 'package:polimarcheflutter/screens/tracks/addTrack_screen.dart';
 import 'package:polimarcheflutter/screens/tracks/track_screen.dart';
+import 'package:polimarcheflutter/view/login_screen.dart';
+import 'package:polimarcheflutter/view/signup_screen.dart';
 // Import the generated file
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'package:polimarcheflutter/screens/login/login_screen.dart';
-import 'package:polimarcheflutter/screens/signup/signup_screen.dart';
-import 'package:polimarcheflutter/screens/home/homeUp_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

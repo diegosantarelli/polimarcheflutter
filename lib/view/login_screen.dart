@@ -1,8 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../viewmodel/login_viewmodel.dart';
+
 class LoginScreen extends StatelessWidget {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final LoginViewModel _viewModel = LoginViewModel();
   TextEditingController matricolaController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -74,12 +75,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
-                      String matricola = matricolaController.text;
-                      String email = "s" + matricola + "@studenti.univpm.it";
-                      String password = passwordController.text;
-                      _signInWithEmailAndPassword(context, email, password);
-                    },
+                    onPressed: () => _viewModel.signIn(
+                      context,
+                      matricolaController.text,
+                      passwordController.text,
+                    ),
                     child: Text('Sign In'),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.grey[700],
@@ -108,10 +108,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   ElevatedButton(
-                    onPressed: () {
-                      String matricola = matricolaController.text;
-                      sendPasswordResetEmail(context, matricola);
-                    },
+                    onPressed: () => _viewModel.sendPasswordResetEmail(context),
                     child: Text(
                       'Password recovery',
                       style: TextStyle(
@@ -128,56 +125,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _signInWithEmailAndPassword(
-      BuildContext context, String email, String password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      Navigator.pushNamed(context, '/home');
-    } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Errore di accesso'),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  void sendPasswordResetEmail(BuildContext context, String matricola) async {
-    try {
-      final auth = FirebaseAuth.instance;
-      final matriculation = "s$matricola@studenti.univpm.it";
-
-      await auth.sendPasswordResetEmail(email: matriculation);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Email di recupero password inviata'),
-          backgroundColor: Colors.green,
-        ),
-      );
-    } catch (e) {
-      String errorMessage = e.toString();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(errorMessage),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
   }
 }

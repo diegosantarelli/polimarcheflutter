@@ -24,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-
+                child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,8 +142,9 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            )
-        )
+            ),
+        ),
+        ),
     );
   }
 

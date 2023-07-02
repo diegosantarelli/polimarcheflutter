@@ -55,7 +55,7 @@ class SetupScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/images/track.png',
+                'assets/images/setup_black.png',
                 width: 20,
                 height: 20,
               ),

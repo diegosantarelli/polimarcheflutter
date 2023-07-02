@@ -41,14 +41,6 @@ class SetupScreen extends StatelessWidget {
         child: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/track.png',
-                width: 20,
-                height: 20,
-              ),
-              label: 'Setups',
-            ),
-            BottomNavigationBarItem(
               icon: GestureDetector(
                 child: Image.asset(
                   'assets/images/home.png',
@@ -61,7 +53,14 @@ class SetupScreen extends StatelessWidget {
               ),
               label: 'Home',
             ),
-
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/images/track.png',
+                width: 20,
+                height: 20,
+              ),
+              label: 'Setups',
+            ),
           ],
         ),
       ),

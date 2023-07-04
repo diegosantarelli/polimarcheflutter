@@ -76,16 +76,7 @@ class AddPracticeSessionScreen extends StatelessWidget {
                   TextField(
                     controller: _sessionDateController,
                     decoration: InputDecoration(
-                      hintText: 'Session date',
-                      hintStyle: TextStyle(color: Colors.white),
-                    ),
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    controller: _endingTimeController,
-                    decoration: InputDecoration(
-                      hintText: 'Ending time',
+                      hintText: 'Session date (dd-mm-yyyy)',
                       hintStyle: TextStyle(color: Colors.white),
                     ),
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -94,7 +85,16 @@ class AddPracticeSessionScreen extends StatelessWidget {
                   TextField(
                     controller: _startingTimeController,
                     decoration: InputDecoration(
-                      hintText: 'Starting time',
+                      hintText: 'Starting time (HH:MM:SS)',
+                      hintStyle: TextStyle(color: Colors.white),
+                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  SizedBox(height: 10),
+                  TextField(
+                    controller: _endingTimeController,
+                    decoration: InputDecoration(
+                      hintText: 'Ending time (HH:MM:SS)',
                       hintStyle: TextStyle(color: Colors.white),
                     ),
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -199,7 +199,78 @@ class AddPracticeSessionScreen extends StatelessWidget {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text('Invalid Time Format'),
-                              content: Text('Please enter ending time and starting time in the format HH:MM:ss.'),
+                              content: Text('Please enter ending time and starting time in the format HH:MM:SS.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        return;
+                      }
+
+                      // Validate that ending time is later than starting time
+                      final startTime = DateTime.parse('2000-01-01 $startingTime');
+                      final endTime = DateTime.parse('2000-01-01 $endingTime');
+                      if (endTime.isBefore(startTime)) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Invalid Time Range'),
+                              content: Text('Ending time must be later than starting time.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        return;
+                      }
+
+                      // Validate the format of session date
+                      final dateRegex = RegExp(r'^\d{2}-\d{2}-\d{4}$');
+                      if (!dateRegex.hasMatch(sessionDate)) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Invalid Date Format'),
+                              content: Text('Please enter session date in the format dd-mm-yyyy.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        return;
+                      }
+
+                      // Validate that session date is later than today's date
+                      final currentDate = DateTime.now().toLocal().toString().split(' ')[0];
+                      final enteredDate = sessionDate.split('-').reversed.join('-');
+                      if (enteredDate.compareTo(currentDate) <= 0) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Invalid Session Date'),
+                              content: Text('Session date must be later than today.'),
                               actions: [
                                 TextButton(
                                   onPressed: () {

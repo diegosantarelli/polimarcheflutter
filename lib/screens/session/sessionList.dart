@@ -126,7 +126,7 @@ class SessionDetailsScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, '/session', (route) => false);
+            Navigator.pushNamed(context, '/session');
           },
         ),
       ),
@@ -250,19 +250,6 @@ class SessionDetailsScreen extends StatelessWidget {
         child: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-        icon: GestureDetector(
-        child: Image.asset(
-                'assets/images/mechanic.png',
-                width: 20,
-                height: 20,
-              ),
-        onTap: () {
-          Navigator.pushNamed(context, '/session');
-        },
-        ),
-              label: 'Practice Sessions',
-            ),
-            BottomNavigationBarItem(
               icon: GestureDetector(
                 child: Image.asset(
                   'assets/images/home.png',
@@ -275,9 +262,24 @@ class SessionDetailsScreen extends StatelessWidget {
               ),
               label: 'Home',
             ),
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                child: Image.asset(
+                  'assets/images/mechanic.png',
+                  width: 20,
+                  height: 20,
+                ),
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context, '/session', (route) => false);
+                },
+              ),
+              label: 'Practice Sessions',
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+

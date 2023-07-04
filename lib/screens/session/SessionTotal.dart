@@ -18,6 +18,7 @@ class PracticeSessionScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 20),
               child: AppBar(
+                automaticallyImplyLeading: false,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 title: Text(

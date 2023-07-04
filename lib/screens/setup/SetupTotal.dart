@@ -54,12 +54,23 @@ class SetupScreen extends StatelessWidget {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset(
+            icon: GestureDetector(
+            child: Image.asset(
                 'assets/images/track.png',
                 width: 20,
                 height: 20,
               ),
-              label: 'Setups',
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/setup',
+                      (route) => false, // Rimuove tutte le pagine nella pila delle route
+                );
+              },
+
+
+            ),
+            label: 'Setups',
             ),
           ],
         ),

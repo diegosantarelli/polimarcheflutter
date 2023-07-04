@@ -137,7 +137,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                   ),
                                   SizedBox(height: 40),
                                   Text(
-                                    'Menu',
+                                    'Menù',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
@@ -172,7 +172,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                               ),
                                               SizedBox(height: 3),
                                               Text(
-                                                'Setup',
+                                                'Setups',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 23,
@@ -209,7 +209,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                               ),
                                               SizedBox(height: 3),
                                               Text(
-                                                'Session',
+                                                'Sessions',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 23,
@@ -346,7 +346,7 @@ class _HomeTotalState extends State<HomeTotal> {
                 width: 40,
                 height: 40,
               ),
-              title: Text('Team'),
+              title: Text('Team Members'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/home');
@@ -358,7 +358,7 @@ class _HomeTotalState extends State<HomeTotal> {
                 width: 40,
                 height: 40,
               ),
-              title: Text('Setup'),
+              title: Text('Setups'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/setup');
@@ -378,11 +378,11 @@ class _HomeTotalState extends State<HomeTotal> {
             ),
             ListTile(
               leading: Image.asset(
-                'assets/images/mechanic_colored.png',
+                'assets/images/mechanic.png',
                 width: 40,
                 height: 40,
               ),
-              title: Text('Practice session'),
+              title: Text('Practice sessions'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/session');

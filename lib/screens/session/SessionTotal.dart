@@ -21,7 +21,7 @@ class PracticeSessionScreen extends StatelessWidget {
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 title: Text(
-                  'Practice Session',
+                  'Practice Sessions',
                   style: TextStyle(
                     fontSize: 34,
                     color: Colors.white,
@@ -40,14 +40,6 @@ class PracticeSessionScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/mechanic.png',
-                width: 20,
-                height: 20,
-              ),
-              label: 'Practice Sessions',
-            ),
             BottomNavigationBarItem(
               icon: GestureDetector(
                 child: Image.asset(

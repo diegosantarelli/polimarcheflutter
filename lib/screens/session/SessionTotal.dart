@@ -53,6 +53,16 @@ class PracticeSessionScreen extends StatelessWidget {
               ),
               label: 'Home',
             ),
+
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/images/mechanic.png',
+                width: 20,
+                height: 20,
+              ),
+              label: 'Practice Sessions',
+            ),
+
             BottomNavigationBarItem(
               icon: GestureDetector(
                 child: Image.asset(

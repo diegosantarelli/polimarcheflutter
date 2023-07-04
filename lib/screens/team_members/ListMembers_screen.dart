@@ -66,6 +66,8 @@ class _MembersScreenState extends State<MembersScreen> {
                   final data = document.data() as Map<String, dynamic>;
                   final firstName = data['firstName'];
                   final matriculation = data['matriculation'];
+                  final workshopArea = data['workshopArea'];
+                  final lastName = data['lastName'];
                   final itemNumber = index + 1; // Aggiunto il numero dell'elemento
 
                   return ListTile(
@@ -87,6 +89,14 @@ class _MembersScreenState extends State<MembersScreen> {
                         ),
                         Text(
                           'Nome: $firstName',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        Text(
+                          'Cognome: $lastName',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        Text(
+                          'Area di competenza: $workshopArea',
                           style: TextStyle(color: Colors.white, fontSize: 17),
                         ),
                       ],

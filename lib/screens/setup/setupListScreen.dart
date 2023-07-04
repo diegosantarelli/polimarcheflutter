@@ -17,10 +17,33 @@ class _SetupListScreenState extends State<SetupListScreen> {
     // Aggiungi altri setup statici se necessario
   ];
 
-  void deleteSetup(int index) {
-    setState(() {
-      setupList.removeAt(index);
-    });
+  void deleteSetup(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm Deletion'),
+          content: Text('Are you sure you want to delete this setup?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Chiudi il popup
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  setupList.removeAt(index);
+                });
+                Navigator.of(context).pop(); // Chiudi il popup
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -39,7 +62,7 @@ class _SetupListScreenState extends State<SetupListScreen> {
               ),
             ),
             trailing: GestureDetector(
-              onTap: () => deleteSetup(index),
+              onTap: () => deleteSetup(context, index),
               child: Icon(
                 Icons.delete,
                 color: Colors.white,

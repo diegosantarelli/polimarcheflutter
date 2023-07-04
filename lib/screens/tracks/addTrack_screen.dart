@@ -5,6 +5,26 @@ class AddTrackScreen extends StatelessWidget {
   final TextEditingController _trackNameController = TextEditingController();
   final TextEditingController _trackLengthController = TextEditingController();
 
+  bool isAlpha(String input) {
+    final alphaRegex = RegExp(r'^[a-zA-Z]+$');
+    return alphaRegex.hasMatch(input);
+  }
+
+  bool isNumeric(String input) {
+    final numericRegex = RegExp(r'^\d+(\.\d+)?$');
+    return numericRegex.hasMatch(input);
+  }
+
+  Future<bool> isTrackNameExists(String trackName) async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('track')
+        .where('name', isEqualTo: trackName)
+        .limit(1)
+        .get();
+
+    return querySnapshot.docs.isNotEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,22 +95,47 @@ class AddTrackScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // Perform add action and save data to Firebase
                     String trackName = _trackNameController.text;
                     String trackLength = _trackLengthController.text;
 
                     // Validate the input data
                     if (trackName.isEmpty ||
-                        double.tryParse(trackLength) == null ||
+                        !isAlpha(trackName) ||
+                        trackLength.isEmpty ||
+                        !isNumeric(trackLength) ||
                         double.parse(trackLength) <= 0) {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text('Invalid Input'),
-                            content:
-                            Text('Please enter a valid track name and length.'),
+                            content: Text(
+                                'Please enter a valid track name (letters only) and track length (numeric value > 0).'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      return;
+                    }
+
+                    // Check if track name already exists
+                    bool trackNameExists = await isTrackNameExists(trackName);
+                    if (trackNameExists) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Invalid Track Name'),
+                            content: Text('A track with the same name already exists. Please choose a different name.'),
                             actions: [
                               TextButton(
                                 onPressed: () {

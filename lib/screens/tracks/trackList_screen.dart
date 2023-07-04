@@ -5,10 +5,33 @@ import 'package:flutter/material.dart';
 class TracksListScreen extends StatelessWidget {
   final List<Track> trackList = [];
 
-  void deleteTrack(int index) {
-    final track = trackList[index];
-    FirebaseFirestore.instance.collection('track').doc(track.id).delete();
-    trackList.removeAt(index); // Remove the track from the list
+  void deleteTrack(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm Deletion'),
+          content: Text('Are you sure you want to delete this track?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                final track = trackList[index];
+                FirebaseFirestore.instance.collection('track').doc(track.id).delete();
+                trackList.removeAt(index); // Remove the track from the list
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -66,7 +89,7 @@ class TracksListScreen extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 GestureDetector(
-                                  onTap: () => deleteTrack(index),
+                                  onTap: () => deleteTrack(context, index),
                                   child: Icon(
                                     Icons.delete,
                                     color: Colors.white,

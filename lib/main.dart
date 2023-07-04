@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:polimarcheflutter/screens/home/HomeTotal_Screen.dart';
-import 'package:polimarcheflutter/screens/home/ListMembers_screen.dart';
+import 'package:polimarcheflutter/screens/team_members/ListMembers_screen.dart';
 import 'package:polimarcheflutter/screens/home/homeDown_screen.dart';
 import 'package:polimarcheflutter/screens/session/SessionTotal.dart';
 import 'package:polimarcheflutter/screens/session/addSession_screen.dart';

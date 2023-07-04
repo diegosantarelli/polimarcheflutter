@@ -349,7 +349,7 @@ class _HomeTotalState extends State<HomeTotal> {
               title: Text('Team Members'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/listmembers');
               },
             ),
             ListTile(

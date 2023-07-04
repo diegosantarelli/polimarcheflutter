@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:polimarcheflutter/screens/home/HomeTotal_Screen.dart';
-import 'package:polimarcheflutter/screens/setup/SetupTotal.dart';
 
 class MembersScreen extends StatefulWidget {
   @override
@@ -57,35 +55,46 @@ class _MembersScreenState extends State<MembersScreen> {
                 return CircularProgressIndicator();
               }
 
-              return ListView(
-                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              return ListView.separated(
+                itemCount: snapshot.data!.docs.length,
+                separatorBuilder: (BuildContext context, int index) => Divider(
+                  color: Colors.white,
+                  thickness: 1,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final document = snapshot.data!.docs[index];
                   final data = document.data() as Map<String, dynamic>;
                   final firstName = data['firstName'];
                   final matriculation = data['matriculation'];
+                  final itemNumber = index + 1; // Aggiunto il numero dell'elemento
 
-                  return Card(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Matricola: $matriculation',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                  return ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Membro $itemNumber', // Visualizza il numero dell'elemento
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Nome: $firstName',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          'Matricola: $matriculation',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        Text(
+                          'Nome: $firstName',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                      ],
                     ),
                   );
-                }).toList(),
+                },
               );
+
             },
           ),
         ),

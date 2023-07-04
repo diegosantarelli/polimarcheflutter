@@ -147,7 +147,7 @@ class AddPracticeSessionScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       // Perform add action and save data to Firebase
                       String airTemperature = _airTemperatureController.text;
                       String ambientPressure = _ambientPressureController.text;
@@ -298,6 +298,34 @@ class AddPracticeSessionScreen extends StatelessWidget {
                         'weather': weather,
                         'eventType': eventType,
                       };
+
+                      // Verifica se il nome della track esiste nel database
+                      final trackNameExists = await FirebaseFirestore.instance
+                          .collection('tracks')
+                          .where('name', isEqualTo: trackName)
+                          .get();
+
+                      if (trackNameExists.docs.isEmpty) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Invalid Track Name'),
+                              content: Text('The entered track name does not exist.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        return;
+                      }
+
 
                       // Save the session data to the "practiceSessions" collection in Firebase
                       FirebaseFirestore.instance.collection('practiceSessions').add(sessionData);

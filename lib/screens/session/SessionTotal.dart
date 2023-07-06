@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polimarcheflutter/screens/session/sessionList.dart';
-import 'package:polimarcheflutter/screens/setup/setupListScreen.dart';
+
 
 class PracticeSessionScreen extends StatelessWidget {
   @override

@@ -285,20 +285,6 @@ class AddPracticeSessionScreen extends StatelessWidget {
                         return;
                       }
 
-                      // Create a map of session data
-                      Map<String, dynamic> sessionData = {
-                        'airTemperature': int.parse(airTemperature),
-                        'ambientPressure': double.parse(ambientPressure),
-                        'date': sessionDate,
-                        'endingTime': endingTime,
-                        'startingTime': startingTime,
-                        'trackCondition': trackCondition,
-                        'trackName': trackName,
-                        'trackTemperature': int.parse(trackTemperature),
-                        'weather': weather,
-                        'eventType': eventType,
-                      };
-
                       // Verifica se il nome della track esiste nel database
                       final trackNameExists = await FirebaseFirestore.instance
                           .collection('track')
@@ -326,6 +312,19 @@ class AddPracticeSessionScreen extends StatelessWidget {
                         return;
                       }
 
+                      // Create a map of session data
+                      Map<String, dynamic> sessionData = {
+                        'airTemperature': int.parse(airTemperature),
+                        'ambientPressure': double.parse(ambientPressure),
+                        'date': sessionDate,
+                        'endingTime': endingTime,
+                        'startingTime': startingTime,
+                        'trackCondition': trackCondition,
+                        'trackName': trackName,
+                        'trackTemperature': int.parse(trackTemperature),
+                        'weather': weather,
+                        'eventType': eventType,
+                      };
 
                       // Save the session data to the "practiceSessions" collection in Firebase
                       FirebaseFirestore.instance.collection('practiceSessions').add(sessionData);

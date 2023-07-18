@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//La classe _MembersScreenState sarà responsabile di gestire lo stato associato a MembersScreen
+//e di aggiornare l'interfaccia utente in base a tali modifiche.
 class MembersScreen extends StatefulWidget {
   @override
+  //crea e restituisce un'istanza di _MembersScreenState, che rappresenta lo stato associato
+  // a MembersScreen.
+  // Il prefisso _ prima di _MembersScreenState indica che la classe _MembersScreenState
+  // è considerata privata e può essere utilizzata solo all'interno del file in cui è definita.
   _MembersScreenState createState() => _MembersScreenState();
 }
 
 class _MembersScreenState extends State<MembersScreen> {
   @override
   Widget build(BuildContext context) {
+    //WillPopScope, che consente di gestire l'evento di pressione del pulsante di "back"
+    //o di navigazione all'indietro nel dispositivo o nella barra di navigazione.
     return WillPopScope(
       onWillPop: () async {
         Navigator.pop(context);
+        //restituito il valore booleano false per indicare che l'evento di pressione
+        //del pulsante di "back" non deve essere gestito ulteriormente
         return false;
       },
       child: Scaffold(

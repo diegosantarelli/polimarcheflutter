@@ -51,6 +51,8 @@ class _MembersScreenState extends State<MembersScreen> {
             ),
           ),
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          // Utilizza il widget StreamBuilder per ascoltare le modifiche in uno stream di dati
+          // proveniente da Firestore.
           child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('team_members')
@@ -66,6 +68,9 @@ class _MembersScreenState extends State<MembersScreen> {
               }
 
               return ListView.separated(
+                //viene utilizzato per specificare il numero di elementi da visualizzare
+                // o elaborare nell'interfaccia utente in base al numero di documenti presenti
+                // nello snapshot dei dati di Firestore ricevuti dallo stream.
                 itemCount: snapshot.data!.docs.length,
                 separatorBuilder: (BuildContext context, int index) => Divider(
                   color: Colors.white,

@@ -186,6 +186,8 @@ class SessionDetailsScreen extends StatelessWidget {
                       return Text('No session data available.');
                     }
 
+                    //assegna il primo documento presente nello snapshot dei dati di Firestore
+                    // alla variabile sessionSnapshot di tipo DocumentSnapshot.
                     DocumentSnapshot sessionSnapshot = snapshot.data!.docs.first;
 
                     String airTemperature = sessionSnapshot['airTemperature'].toString();

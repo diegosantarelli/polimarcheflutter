@@ -22,6 +22,7 @@ class TracksListScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 final track = trackList[index];
+                //rimuoviamo la track dall collection "track" nel db
                 FirebaseFirestore.instance.collection('track').doc(track.id).delete();
                 trackList.removeAt(index); // Remove the track from the list
                 Navigator.of(context).pop(); // Close the dialog
@@ -123,7 +124,7 @@ class TracksListScreen extends StatelessWidget {
   }
 }
 
-//La classe Track è un modello di dati che rappresenta un singolo elemento nella collezione
+//La classe Track è un modello di dati che rappresenta un singolo elemento nella collection
 //"track" su Firebase Firestore
 class Track {
   final String name;

@@ -19,9 +19,14 @@ class CustomPopupMenu extends StatelessWidget {
   }
 }
 
-// Classe principale che rappresenta la schermata principale
+//La classe _HomeTotalState sarà responsabile di gestire lo stato associato a HomeTotal
+//e di aggiornare l'interfaccia utente in base a tali modifiche.
 class HomeTotal extends StatefulWidget {
   @override
+  //crea e restituisce un'istanza di _HomeTotalState, che rappresenta lo stato associato
+  // a MembersScreen.
+  // Il prefisso _ prima di _HomeTotalState indica che la classe _HomeTotalState
+  // è considerata privata e può essere utilizzata solo all'interno del file in cui è definita.
   _HomeTotalState createState() => _HomeTotalState();
 }
 
@@ -259,7 +264,7 @@ class _HomeTotalState extends State<HomeTotal> {
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  Navigator.pushNamed(context, '/tracks'); // Sostituisci '/tracks' con la route corretta per la tua vista desiderata
+                                                  Navigator.pushNamed(context, '/tracks');
                                                 },
                                                 child: Column(
                                                   children: [

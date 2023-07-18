@@ -9,7 +9,7 @@ class SignUpScreen extends StatelessWidget {
   // Viene ottenuta l'istanza di FirebaseFirestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Vengono impostati dei controller sugli elementi di input TextField
+  // Vengono impostati dei controller sugli elementi di input TextFormField
   TextEditingController matricolaController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confermapwController = TextEditingController();
@@ -101,6 +101,7 @@ class SignUpScreen extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(height: 15),
+                    // Quando il bottone di Sign Up viene premuto
                     TextButton(
                       onPressed: () {
                         print("Sign Up button pressed");
@@ -108,7 +109,7 @@ class SignUpScreen extends StatelessWidget {
                         String email = "s" + matricola + "@studenti.univpm.it";// Ottieni il valore della email dal campo di testo
                         String password = passwordController.text;// Ottieni il valore della password dal campo di testo
                         String confermapw = confermapwController.text;
-
+          // Richiama il metodo registerUser
                         registerUser(context, email, password, confermapw);
                       },
                       child: Text(
@@ -154,6 +155,7 @@ class SignUpScreen extends StatelessWidget {
   void registerUser(BuildContext context, String email, String password, String confirmPassword) async {
     print("Registering user");
     try {
+      // Controllo per verificare se password e confirmPassword coincidono
       if (password != confirmPassword) {
         // Le password non corrispondono, gestisci l'errore qui
         print('Le password non corrispondono');
@@ -165,7 +167,7 @@ class SignUpScreen extends StatelessWidget {
         );
         return;
       }
-
+      // Controllo sulla lunghezza della Password
       if (password.length < 6) {
         // La password deve essere di almeno 6 caratteri, gestisci l'errore qui
         print('La password deve essere di almeno 6 caratteri');
@@ -178,11 +180,15 @@ class SignUpScreen extends StatelessWidget {
         return;
       }
 
+      // Se entrambi i controlli vengono superati, la funzione procede per creare
+      // un nuovo utente e salvarlo in userCredential.
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
+      // Se l'operazione di creazione dell'utente ha successo, viene eseguita
+      // la registrazione dell'utente anche nel database Firestore nella collezione "Users
       if (userCredential.user != null) {
         // Creazione dell'utente nel database Firestore
         await _firestore.collection('Users').doc(userCredential.user!.uid).set({

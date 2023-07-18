@@ -2,27 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTrackScreen extends StatelessWidget {
+  //oggetto di tipo TextEditingController utilizzati per gestire l'input degli utenti
+  // in campi di testo.
   final TextEditingController _trackNameController = TextEditingController();
   final TextEditingController _trackLengthController = TextEditingController();
 
+  //verifica se una stringa input contiene solo caratteri alfabetici.
   bool isAlpha(String input) {
     final alphaRegex = RegExp(r'^[a-zA-Z]+$');
     return alphaRegex.hasMatch(input);
   }
 
+  //verifica se una stringa input contiene solo numeri.
   bool isNumeric(String input) {
     final numericRegex = RegExp(r'^\d+(\.\d+)?$');
     return numericRegex.hasMatch(input);
   }
 
+  //verifica se il nome di una track esiste già
   Future<bool> isTrackNameExists(String trackName) async {
+    //ottengo un'istanza di FirebaseFirestore, che rappresenta l'accesso al database Firestore.
     final querySnapshot = await FirebaseFirestore.instance
         .collection('track')
         .where('name', isEqualTo: trackName)
         .limit(1)
         .get();
-
-    return querySnapshot.docs.isNotEmpty;
+    //restituisce una lista di oggetti QueryDocumentSnapshot
+    //contenenti i documenti risultanti dalla query.
+    return querySnapshot.docs.isNotEmpty;//true se non è vuota, false altrimenti.
   }
 
   @override
@@ -116,6 +123,7 @@ class AddTrackScreen extends StatelessWidget {
                             actions: [
                               TextButton(
                                 onPressed: () {
+                                  //permette di chiudere il dialog
                                   Navigator.of(context).pop();
                                 },
                                 child: Text('OK'),
@@ -127,7 +135,9 @@ class AddTrackScreen extends StatelessWidget {
                       return;
                     }
 
-                    // Check if track name already exists
+                    // Controlla se il nome della track esiste già
+                    //await mette in pausa l'esecuzione del programma in attesa che il
+                    //risultato della funzione asincrona sia disponibile.
                     bool trackNameExists = await isTrackNameExists(trackName);
                     if (trackNameExists) {
                       showDialog(
@@ -150,16 +160,16 @@ class AddTrackScreen extends StatelessWidget {
                       return;
                     }
 
-                    // Create a map of track data
+                    // Crea una map
                     Map<String, dynamic> trackData = {
                       'name': trackName,
                       'length': trackLength,
                     };
 
-                    // Save the track data to the "track" collection in Firebase
+                    // Salva i dati della track nella collection "track" in Firebase
                     FirebaseFirestore.instance.collection('track').add(trackData);
 
-                    // Clear the text field values after saving
+                    // Pulisce i valori dei Text Field dopo aver salvato
                     _trackNameController.clear();
                     _trackLengthController.clear();
 

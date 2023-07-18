@@ -36,19 +36,25 @@ class TracksListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //costruire un widget che ascolta le modifiche in tempo reale nel documento della collezione
+    // "track" su Firebase Firestore.
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('track').snapshots(),
       builder: (context, snapshot) {
+        //verifica se lo snapshot ha generato un errore
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }
-
+        //Se non ci sono ancora dati disponibili, viene restituito un widget
+        // CircularProgressIndicator per indicare che i dati sono in fase di caricamento.
         if (!snapshot.hasData) {
           return CircularProgressIndicator();
         }
-
+        //ottenuto l'elenco dei documenti presenti nella QuerySnapshot tramite snapshot.data!.docs
         final trackDocuments = snapshot.data!.docs;
         trackList.clear(); // Clear the existing list before updating it
+        //vengono aggiunti gli elementi all'elenco trackList convertendo ciascun documento
+        //in un oggetto Track tramite la chiamata al metodo statico fromSnapshot della classe Track.
         trackList.addAll(trackDocuments.map((doc) => Track.fromSnapshot(doc)));
 
         return Scaffold(
@@ -69,7 +75,9 @@ class TracksListScreen extends StatelessWidget {
                       final track = trackList[index];
                       return ListTile(
                         title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Allinea gli elementi a destra e a sinistra
+                          // Allinea gli elementi a destra e a sinistra
+                          //Allineamento fatto rispetto all'asse principale
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               track.name,
@@ -115,13 +123,20 @@ class TracksListScreen extends StatelessWidget {
   }
 }
 
+//La classe Track è un modello di dati che rappresenta un singolo elemento nella collezione
+//"track" su Firebase Firestore
 class Track {
   final String name;
   final String length;
   final String id;
 
+  //Il costruttore Track viene utilizzato per creare una nuova istanza di Track
+  // fornendo i valori per name, length e id.
   Track(this.name, this.length, this.id);
 
+  //Il costruttore alternativo Track.fromSnapshot viene utilizzato per creare un'istanza
+  // di Track a partire da un DocumentSnapshot, che rappresenta un singolo documento
+  // nella collezione Firestore
   Track.fromSnapshot(DocumentSnapshot snapshot)
       : name = snapshot['name'],
         length = snapshot['length'],

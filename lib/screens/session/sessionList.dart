@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/* Questa è la schermata che visualizza un elenco di sessioni di pratica.
+
+Ogni elemento dell'elenco viene visualizzato come un ListTile con la data della sessione.
+
+L'utente può toccare una sessione per visualizzarne i dettagli o fare clic su un'icona per eliminarla.
+
+Inoltre, questa schermata ha una barra di navigazione inferiore con due voci:
+"Home" e "Practice Sessions
+*/
+
 class ListPracticeSessionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,6 +28,7 @@ class ListPracticeSessionScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: EdgeInsets.all(10),
+          // Utilizza un StreamBuilder per ottenere i dati delle sessioni dal database Firebase.
                 child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance.collection('practiceSessions').snapshots(),
                   builder: (context, snapshot) {
@@ -105,6 +116,12 @@ class ListPracticeSessionScreen extends StatelessWidget {
     );
   }
 }
+
+/* Questa schermata mostra i dettagli di una sessione di pratica selezionata dall'utente
+   nella schermata precedente. Riceve la data della sessione come parametro.
+   Utilizza anche un StreamBuilder per ottenere i dettagli della sessione dal database Firebase
+   e visualizza le informazioni come elenco di ListTile
+*/
 
 class SessionDetailsScreen extends StatelessWidget {
   final String sessionDate;

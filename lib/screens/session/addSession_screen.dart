@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/* Classe che consente all'utente di aggiungere una nuova sessione di pratica, completando
+i vari campi di input (TextField).
+
+Prima di salvare i dati, vengono effettuati vari controlli di validità sui campi inseriti dall'utente.
+Se uno dei campi è vuoto o non rispetta il formato desiderato (ad esempio, l'orario deve
+essere nel formato HH:MM:SS e la data nel formato yyyy-mm-dd),
+viene visualizzato un messaggio di errore.
+
+Inoltre, viene controllato che la data della sessione sia successiva alla data corrente,
+che il nome della pista esista nel database e
+che l'ora di fine sia successiva all'ora di inizio.
+Se uno di questi controlli fallisce, viene visualizzato un messaggio di errore appropriato.
+
+Se i controlli verrano passati al clic sul pulsante "Add" si salvano i dati nel database
+nella collezione "practiceSessions.
+* */
 class AddPracticeSessionScreen extends StatelessWidget {
+
+  // Vengono impostati dei controller sui campi di input
   final TextEditingController _airTemperatureController = TextEditingController();
   final TextEditingController _ambientPressureController = TextEditingController();
   final TextEditingController _sessionDateController = TextEditingController();
@@ -191,7 +209,7 @@ class AddPracticeSessionScreen extends StatelessWidget {
                         return;
                       }
 
-                      // Validate the format of ending time and starting time
+                      // Validate the FORMAT of ending time and starting time
                       final timeRegex = RegExp(r'^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$');
                       if (!timeRegex.hasMatch(endingTime) || !timeRegex.hasMatch(startingTime)) {
                         showDialog(

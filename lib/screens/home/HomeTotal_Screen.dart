@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'homeUp_screen.dart';
 
+// Classe rappresenta un widget personalizzato per un menu
+// a comparsa. Utilizza il widget IconButton
+// per mostrare l'icona del menu e apre il drawer quando viene premuto
 class CustomPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,18 +19,26 @@ class CustomPopupMenu extends StatelessWidget {
   }
 }
 
+// Classe principale che rappresenta la schermata principale
 class HomeTotal extends StatefulWidget {
   @override
   _HomeTotalState createState() => _HomeTotalState();
 }
 
+// Classe di stato associata al widget HomeTotal
 class _HomeTotalState extends State<HomeTotal> {
+  // Istanza di una classe UserData
+  // FINAL viene utilizzata per dichiarare variabili che possono
+  // essere inizializzate solo una volta e poi non possono
+  // essere riassegnate a un nuovo valore
   final UserData userData = UserData();
+  // Istanza della classe FirebaseAuth
   late FirebaseAuth _auth;
   late String userId; // Variabile per memorizzare userId
   int _currentIndex = 0;
   late String dropdownValue = 'Option 1';
 
+  // Inizializza l'autenticazione Firebase e recupera i dati da Firebase per l'utente corrente
   @override
   void initState() {
     super.initState();
@@ -36,11 +47,15 @@ class _HomeTotalState extends State<HomeTotal> {
     fetchDataFromFirebase(userId);
   }
 
+  // Metodo che recupera i dati da Firebase per il userId fornito
   Future<void> fetchDataFromFirebase(String userId) async {
     await userData.fetchDataFromFirebase(userId);
     setState(() {}); // Aggiorna il widget dopo il recupero dei dati
   }
 
+  // Il metodo principale che costruisce l'interfaccia utente per la schermata principale.
+  // Include un Scaffold con un'immagine di sfondo e vari componenti dell'interfaccia
+  // utente come testi, immagini e container
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,6 +162,9 @@ class _HomeTotalState extends State<HomeTotal> {
                                   SizedBox(height: 20),
                                   Row(
                                     children: [
+                                      // Le opzioni del menu sono rappresentate utilizzando i widget InkWell,
+                                      // che possono essere toccati e navigano verso diverse route utilizzando
+                                      // Navigator.pushNamed
                                       Expanded(
                                       child: InkWell(
                                         onTap: () {
@@ -284,6 +302,9 @@ class _HomeTotalState extends State<HomeTotal> {
           ],
         ),
       ),
+      // Nella parte inferiore dello schermo, c'è una BottomAppBar con tre icone
+      // che rappresentano diverse azioni. L'icona centrale mostra un menu
+      // a comparsa personalizzato rappresentato dal widget CustomPopupMenu
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

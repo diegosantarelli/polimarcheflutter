@@ -4,9 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpScreen extends StatelessWidget {
 
+  // Viene ottenuta l'istanza di FirebaseAuth
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Viene ottenuta l'istanza di FirebaseFirestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Vengono impostati dei controller sugli elementi di input TextField
   TextEditingController matricolaController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confermapwController = TextEditingController();

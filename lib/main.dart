@@ -12,6 +12,7 @@ import 'package:polimarcheflutter/screens/login/login_screen.dart';
 import 'package:polimarcheflutter/screens/signup/signup_screen.dart';
 
 
+// Viene avviata l'applicazione Flutter inizializzando Firebase e avviando l'app MyApp.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -20,6 +21,7 @@ void main() async {
   runApp(MyApp());
 }
 
+// Classe principale dell'applicazione
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -49,6 +51,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: '/login',
+
+      // Vengono definite le routes delle diverse schermate dell'applicazione
       routes: {
         '/login': (context) => LoginScreen(),
         '/signup': (context) => SignUpScreen(),

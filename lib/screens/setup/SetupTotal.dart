@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:polimarcheflutter/screens/setup/setupListScreen.dart';
 
+/*
+* Mostra una lista di "setups" utilizzando il widget SetupListScreen.
+* L'aspetto della schermata include un'immagine di sfondo con un effetto
+* di oscuramento, un'app bar con il titolo "Setups" e una barra di
+* navigazione inferiore con due elementi: "Home" e "Setups"
+*/
+
 class SetupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -67,8 +74,6 @@ class SetupScreen extends StatelessWidget {
                       (route) => false, // Rimuove tutte le pagine nella pila delle route
                 );
               },
-
-
             ),
             label: 'Setups',
             ),

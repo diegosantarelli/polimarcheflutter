@@ -2,10 +2,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
+  // Istanza di FirebaseAuth
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Vengono dichiarati due controller per i campi di testo,
+  // uno per la matricola e uno per la password
   TextEditingController matricolaController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  // Nel metodo build, viene costruita l'interfaccia utente.
+  // Viene utilizzato un Scaffold come contenitore principale,
+  // con uno sfondo decorato e una colonna di widget al centro.
+  //
+  // Vengono aggiunti due campi di testo per la "matricola" e la password,
+  // con gli stili e le opzioni di decorazione.
+  //
+  // Ci sono tre pulsanti: "Sign In" per effettuare l'accesso,
+  // "Sign Up" per registrarsi e
+  // "Password recovery" per richiedere il ripristino della password
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,6 +144,11 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
+  // Il metodo _signInWithEmailAndPassword viene chiamato
+  // quando l'utente preme il pulsante "Sign In". Questo metodo utilizza l
+  // 'istanza _auth per effettuare l'autenticazione con l'email e la password fornite.
+  // Se l'autenticazione è riuscita, l'app passerà alla schermata "/home",
+  // altrimenti verrà visualizzato un messaggio di errore in un AlertDialog
   Future<void> _signInWithEmailAndPassword(
       BuildContext context, String email, String password) async {
     try {
@@ -157,6 +176,11 @@ class LoginScreen extends StatelessWidget {
     }
   }
 
+  // Il metodo sendPasswordResetEmail viene chiamato quando
+  // l'utente preme il pulsante "Password recovery". Questo metodo invia un'email
+  // di recupero password all'indirizzo specificato, utilizzando l'istanza _auth.
+  // Se l'operazione ha successo, viene visualizzato un messaggio di conferma,
+  // altrimenti un messaggio di errore.
   void sendPasswordResetEmail(BuildContext context, String matricola) async {
     try {
       final auth = FirebaseAuth.instance;

@@ -3,10 +3,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// Questa classe è utilizzata per memorizzare i dati dell'utente recuperati dal database Firebase
 class UserData extends ChangeNotifier {
   String matriculation = '';
   String role = '';
 
+  // Metodo responsabile del recupero dei dati dell'utente dal database Firestore.
+  // Utilizza l'ID dell'utente fornito per recuperare il documento corrispondente dall'insieme "Users".
+  // Se il documento esiste, vengono estratti i dati e assegnati alle proprietà matriculation e role.
+  // Se il documento non esiste, le proprietà vengono lasciate vuote.
+  // Infine, il metodo notifyListeners() viene chiamato per avvisare gli ascoltatori
+  // che i dati sono stati aggiornati.
   Future<void> fetchDataFromFirebase(String userId) async {
     try {
       DocumentSnapshot userDocument = await FirebaseFirestore.instance
@@ -27,7 +34,7 @@ class UserData extends ChangeNotifier {
 
     notifyListeners();
   }
-
+// Utilizzato per estrarre la matricola dall'indirizzo email dell'utente
   String? getMatricolaFromEmail(String email) {
     RegExp regex = RegExp(r'\d+');
     Match match = regex.firstMatch(email) as Match;
@@ -39,7 +46,7 @@ class UserData extends ChangeNotifier {
   }
 
 }
-
+/*
 class HomeScreenUp extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -233,4 +240,4 @@ class _HomeScreenState extends State<HomeScreenUp> {
   }
 }
 
-
+*/

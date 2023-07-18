@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+/* Mostra una lista di "setups" con un'icona di cancellazione accanto a ciascun setup. */
+
 class SetupListScreen extends StatefulWidget {
   @override
   _SetupListScreenState createState() => _SetupListScreenState();
 }
 
 class _SetupListScreenState extends State<SetupListScreen> {
+  // La lista di setup è definita come una lista di stringhe statiche
   final List<String> setupList = [
     'Setup 1',
     'Setup 2',
@@ -14,9 +17,11 @@ class _SetupListScreenState extends State<SetupListScreen> {
     'Setup 5',
     'Setup 6',
     'Setup 7',
-    // Aggiungi altri setup statici se necessario
   ];
 
+  // Toccando l'icona di cancellazione, viene visualizzato un popup di conferma che chiede
+  // all'utente se desidera eliminare il setup selezionato.
+  // Se l'utente conferma l'eliminazione, il setup viene rimosso dalla lista.
   void deleteSetup(BuildContext context, int index) {
     showDialog(
       context: context,

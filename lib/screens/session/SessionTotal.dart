@@ -3,6 +3,20 @@ import 'package:polimarcheflutter/screens/session/sessionList.dart';
 
 
 class PracticeSessionScreen extends StatelessWidget {
+
+  /* Viene costruita l'interfaccia utente della schermata.
+   È composta da un Scaffold con uno sfondo decorato,
+  una colonna di widget e una barra di navigazione inferiore (BottomAppBar)
+
+  La barra superiore contiene un'app Bar personalizzata con il titolo "Practice Sessions"
+
+  La colonna di widget contiene due elementi: il primo è un contenitore con margine superiore,
+  che fornisce spazio sopra l'app Bar. Il secondo elemento è ListPracticeSessionScreen(),
+  che viene utilizzato per visualizzare l'elenco delle sessioni di pratica
+
+  La barra inferiore (BottomAppBar) contiene un BottomNavigationBar con due voci,
+  "Home" e "Add
+  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
